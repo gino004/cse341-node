@@ -1,25 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 
-const port = 3000;
+const professionalData = require('./data/professionalData');
 
-app.get('/', (req, res) => {
-	res.send('Hello CSE 341!');
-});
+const port = 8080;
 
-app.get('/about', (req, res) => {
-	res.send('This is my CSE 341 API');
-});
-
-app.get('/user', (req, res) => {
-	res.send(`User ID: ${req.query.id}`);
-});
-
-app.get('/person', (req, res) => {
-	res.json({
-		name: req.query.name,
-		age: req.query.age
-	});
+app.get('/professional', (req, res) => {
+	res.json(professionalData);
 });
 
 app.listen(port, () => {
